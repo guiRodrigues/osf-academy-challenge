@@ -5,12 +5,13 @@ const logger = require('morgan');
 const favicon = require('serve-favicon');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
+const { initDB } = require('../database');
 // const errorHandler = require('errorhandler');
 
+const config = require('../config');
 const routes = require('./routes');
 
 /*
- *  TODO export environment variables
  *  TODO search for imports and exports
  *  TODO implement error handler
  *  TODO search for youch for error handling
@@ -24,8 +25,8 @@ class Server {
   create() {
     // Server settings
     this.server.set('env', process.env.NODE_ENV || 'local');
-    this.server.set('port', 8080);
-    this.server.set('host', 'localhost');
+    this.server.set('port', config.port);
+    this.server.set('host', config.host);
     this.server.set('views', path.resolve(__dirname, '..', 'app', 'views'));
 
     // setup view engine
@@ -44,7 +45,7 @@ class Server {
     this.server.use(methodOverride());
 
     // need cookieParser middleware before we can do anything with cookies
-    this.server.use(cookieParser('60d674ba59f856f5860459815d5638a8'));
+    this.server.use(cookieParser(config.cookieParser));
 
     // serve static files
     this.server.use(express.static(path.resolve(__dirname, '..', 'public')));
@@ -57,9 +58,11 @@ class Server {
     const host = this.server.get('host');
     const port = this.server.get('port');
 
-    this.server.listen(port, () =>
-      console.log(`Express server listening on - http://${host}:${port}`)
-    );
+    initDB(() => {
+      this.server.listen(port, () => {
+        console.log(`Express server listening on - http://${host}:${port}`);
+      });
+    });
   }
 }
 
