@@ -1,4 +1,3 @@
-// const homeRoute = require('./home');
 const categoriesRoute = require('./categories');
 
 function init(server) {
