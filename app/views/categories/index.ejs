@@ -1,0 +1,30 @@
+<body>
+  <% const objCategory = items.find(obj => { return obj.id === category }); %>
+  <div class="category-description">
+    <h2 class="category-description-title">
+      <%= objCategory.page_title %>
+    </h2>
+    <p class="category-description-text">
+      <%= objCategory.page_description %>
+    </p>
+  </div>
+
+  <div>
+    <% _.each(objCategory.categories, function(subC) { %>
+    <div class="subcategory-item">
+      <% if (subC.image) { %>
+      <div>
+        <img class="subcategory-item-img" src="/images/<%= subC.image %>" />
+      </div>
+      <% } %>
+      <p class="subcategory-item-description">
+        <span class="subcategory-item-title"><%= subC.name %></span>
+        , <%= subC.page_description %>
+      </p>
+      <button class="subcategory-item-button" type="button">
+        View Products
+      </button>
+    </div>
+    <% }); %>
+  </div>
+</body>

@@ -1,0 +1,12 @@
+<header>
+  <h1>Clothes Store</h1>
+  <nav class="menu">
+    <% _.each(items, function(subC) { %>
+    <a
+      class="menu-item <%- subC.id === category ? 'menu-item-selected' : '' %>"
+      href="<%- subC.id %>"
+      ><%= subC.name %></a
+    >
+    <% }); %>
+  </nav>
+</header>

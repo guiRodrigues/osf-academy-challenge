@@ -5,6 +5,7 @@ const logger = require('morgan');
 const favicon = require('serve-favicon');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
+const expressLayoutes = require('express-ejs-layouts');
 const { initDB } = require('../database');
 // const errorHandler = require('errorhandler');
 
@@ -31,6 +32,8 @@ class Server {
 
     // setup view engine
     this.server.set('view engine', 'ejs');
+
+    this.server.use(expressLayoutes);
 
     // serve favicon
     this.server.use(favicon(path.join(__dirname, '../public/favicon.ico')));

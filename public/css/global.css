@@ -1,0 +1,140 @@
+/*
+  font-family: 'Alata', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Vidaloka', serif;
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  background: #fcfcff;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+button {
+  color: #222;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: #222;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.main-footer {
+  color: #999;
+  font-family: 'Alata', sans-serif;
+  text-align: center;
+  margin: 50px auto 20px;
+}
+
+header {
+  background: #41252f;
+  height: 13vh;
+  width: 100%;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  color: #e0dad5;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+}
+
+.menu-item {
+  font-family: 'Alata', sans-serif;
+  margin-right: 15px;
+  color: #e0dad5;
+}
+
+.menu-item-selected {
+  color: #ffd66b;
+}
+
+.category-description {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  /* height: 40px; */
+  padding: 50px 100px 80px;
+  background-color: #41252f;
+  color: #e0dad5;
+}
+
+.category-description-title {
+  font-size: 50px;
+  font-family: 'Ibarra Real Nova', serif;
+}
+
+.category-description-text {
+  margin-left: 40px;
+  font-family: 'Alata', sans-serif;
+  font-size: 16px;
+}
+
+.subcategory-item {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 700px;
+  padding-top: 20px;
+  margin: 30px auto;
+}
+
+.subcategory-item:nth-child(n + 2) {
+  border-top: 2px solid #eee;
+  padding-top: 40px;
+}
+
+.subcategory-item-img {
+  max-width: 700px;
+  border-radius: 4px;
+}
+
+.subcategory-item-title {
+  font-size: 16px;
+  color: #212121;
+  font-weight: bold;
+}
+
+.subcategory-item-description {
+  font-family: 'Alata', sans-serif;
+  color: #444;
+  margin-top: 9px;
+  max-width: 670px;
+}
+
+.subcategory-item-button {
+  border: none;
+  margin-top: 13px;
+  background: #ffd66b;
+  color: #212121;
+  font-family: 'Alata', sans-serif;
+  border-radius: 4px;
+  padding: 10px 15px;
+}
