@@ -6,7 +6,6 @@ function init(server) {
   });
 
   server.use('/categories', categoriesRoute);
-  // server.use('/hello', helloRoute);
 }
 
 module.exports = {

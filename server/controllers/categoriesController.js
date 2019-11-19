@@ -11,7 +11,7 @@ function list(req, res) {
     .toArray((error, items) => {
       res.render('categories', {
         _,
-        title: 'Hello World!',
+        title: 'Clothes & Smiles',
         category,
         items,
       });
