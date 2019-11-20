@@ -36,7 +36,7 @@ class Server {
     this.server.use(expressLayoutes);
 
     // serve favicon
-    this.server.use(favicon(path.join(__dirname, '../public/favicon.ico')));
+    this.server.use(favicon(path.resolve(__dirname, '../public/favicon.ico')));
 
     // log requests
     this.server.use(logger('tiny'));

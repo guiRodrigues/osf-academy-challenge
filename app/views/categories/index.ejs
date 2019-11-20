@@ -21,9 +21,11 @@
         <span class="subcategory-item-title"><%= subC.name %></span>
         , <%= subC.page_description %>
       </p>
-      <button class="subcategory-item-button" type="button">
-        View <%= subC.name %>
-      </button>
+      <a href="<%- objCategory.id + '/' + subC.id %>">
+        <button class="subcategory-item-button" type="button">
+          View <%= subC.name %>
+        </button>
+      </a>
     </div>
     <% }); %>
   </div>
