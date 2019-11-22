@@ -1,0 +1,30 @@
+<body>
+  <div class="products-container">
+    <div class="products">
+      <% _.each(products, function(product) { %>
+      <div class="product">
+        <div class="image-container">
+          <img class="product-image" src="/images/<%= product.image %>" />
+        </div>
+        <div class="infos-container">
+          <h3 class="product-name"><%= product.name %></h3>
+          <p class="product-description"><%= product.short_description %></p>
+          <p>Price: $ <%= product.price %></p>
+          <button class="subcategory-item-button" type="button">
+            More Info
+          </button>
+        </div>
+      </div>
+      <% }); %>
+      <div class="navigations">
+        <% for (let i=1; i<productsIndexes; i++) { %>
+          <a 
+            class="navigation-button <%- actualPage == i ? 'page-selected' : '' %>" 
+            href="?page=<%= i %>">
+              <%= i %>
+          </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>

@@ -6,7 +6,8 @@ const favicon = require('serve-favicon');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const expressLayoutes = require('express-ejs-layouts');
-const { initDB } = require('../database');
+const mongoose = require('mongoose');
+const { mongoDB } = require('../config');
 // const errorHandler = require('errorhandler');
 
 const config = require('../config');
@@ -53,6 +54,15 @@ class Server {
     // serve static files
     this.server.use(express.static(path.resolve(__dirname, '..', 'public')));
 
+    mongoose.connect(
+      `mongodb+srv://${mongoDB.username}:${mongoDB.password}@cluster0-fvn5s.mongodb.net/${mongoDB.databaseName}?retryWrites=true&w=majority`,
+      {
+        useNewUrlParser: true,
+        useFindAndModify: true,
+        useUnifiedTopology: true,
+      }
+    );
+
     // Set up routes
     routes.init(this.server);
   }
@@ -60,11 +70,8 @@ class Server {
   start() {
     const host = this.server.get('host');
     const port = this.server.get('port');
-
-    initDB(() => {
-      this.server.listen(port, () => {
-        console.log(`Express server listening on - http://${host}:${port}`);
-      });
+    this.server.listen(port, () => {
+      console.log(`Express server listening on - http://${host}:${port}`);
     });
   }
 }

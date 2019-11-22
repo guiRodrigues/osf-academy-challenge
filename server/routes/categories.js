@@ -1,13 +1,15 @@
 const express = require('express');
-const categoriesController = require('../controllers/categoriesController');
-const productsController = require('../controllers/productsController');
 
-// const productsRoute = require('./products');
+const CategoriesController = require('../controllers/categoryController');
+const CubCategoryController = require('../controllers/subCategoryController');
+const ProductController = require('../controllers/productController');
 
 const router = express.Router();
 
-router.get('/:category', categoriesController.list);
+router.get('/:category', CategoriesController.list);
 
-router.get('/:category/:subcategory', productsController.list);
+router.get('/:category/:subcategory', CubCategoryController.list);
+
+router.get('/:category/:subcategory/:id', ProductController.list);
 
 module.exports = router;

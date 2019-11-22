@@ -1,5 +1,5 @@
 module.exports = {
-  port: 8080,
+  port: 80,
   host: 'localhost',
   cookieParser: '60d674ba59f856f5860459815d5638a8',
   mongoDB: {

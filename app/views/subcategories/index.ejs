@@ -1,15 +1,15 @@
 <body>
-  <div class="category-description">
-    <h2 class="category-description-title">
-      <%= item.page_title %>
+  <div class="subcategory category-description">
+    <h2 class="subcategory-title category-description-title">
+      <%= subcategoryInfo.name %>
     </h2>
     <p class="category-description-text">
-      <%= item.page_description %>
+      <%= subcategoryInfo.info %>
     </p>
   </div>
 
   <div>
-    <% _.each(item.categories, function(subC) { %>
+    <% _.each(item, function(subC) { %>
     <div class="subcategory-item">
       <% if (subC.image) { %>
       <div>
@@ -23,7 +23,7 @@
         <span class="subcategory-item-title"><%= subC.name %></span>, <% } %>
         <%= subC.page_description %>
       </p>
-      <a href="<%- item.id + '/' + subC.id %>">
+      <a href="<%- subC.parent_category_id + '/' + subC.id %>">
         <button class="subcategory-item-button" type="button">
           View <%= subC.name %>
         </button>

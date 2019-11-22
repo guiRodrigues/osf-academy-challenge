@@ -1,11 +1,12 @@
 <header>
-  <h1>Clothes & Likes</h1>
+  <a href="/"><h1>Clothes & Likes</h1></a>
   <nav class="menu">
-    <% _.each(items, function(subC) { %>
+    <% _.each(categories, function(categoryInfo) { %>
     <a
-      class="menu-item <%- subC.id === category ? 'menu-item-selected' : '' %>"
-      href="<%- subC.id %>"
-      ><%= subC.name %></a>
+      class="menu-item <%- categoryInfo.categoryId === category ? 'menu-item-selected' : '' %>"
+      href="<%- '/' + categoryInfo.categoryId %>"
+      ><%= categoryInfo.categoryName %></a
+    >
     <% }); %>
   </nav>
 </header>

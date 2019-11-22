@@ -2,10 +2,10 @@ const categoriesRoute = require('./categories');
 
 function init(server) {
   server.get('/', (req, res) => {
-    res.redirect('/categories/womens');
+    res.redirect('/womens');
   });
 
-  server.use('/categories', categoriesRoute);
+  server.use('/', categoriesRoute);
 }
 
 module.exports = {
