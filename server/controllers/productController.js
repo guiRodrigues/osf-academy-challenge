@@ -1,14 +1,9 @@
 const _ = require('underscore');
 
-const Category = require('../models/category/mainCategory');
 const Product = require('../models/product/product');
 
 async function list(req, res) {
   const { category, id } = req.params;
-
-  const categories = await Category.find({}).then(catgs =>
-    catgs.map(catg => ({ categoryId: catg.id, categoryName: catg.name }))
-  );
 
   // const formatter = new Intl.NumberFormat('pt-BR', {
   //   style: 'currency',
@@ -22,11 +17,10 @@ async function list(req, res) {
   const paginateOptions = {
     limit: 20,
     page,
-    offset: (page - 1) * 20,
   };
 
   Product.paginate({ primary_category_id: id }, paginateOptions).then(
-    products => {
+    async products => {
       const response = products.docs.map(product => {
         const { images } = product.image_groups.find(
           image_group => image_group.view_type === 'medium'
@@ -42,6 +36,8 @@ async function list(req, res) {
 
       const productsIndexes =
         Math.ceil(products.total / paginateOptions.limit) + 1;
+
+      const categories = await req.categories.then(resp => resp);
 
       res.render('products', {
         _,

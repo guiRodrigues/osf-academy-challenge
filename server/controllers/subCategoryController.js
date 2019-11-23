@@ -11,9 +11,7 @@ async function list(req, res) {
   };
 
   // get categories
-  const categories = await Category.find({}).then(cats =>
-    cats.map(cat => ({ categoryId: cat.id, categoryName: cat.name }))
-  );
+  const categories = await req.categories.then(resp => resp);
 
   Category.findOne({ id: category }).then(item => {
     const subSubCategories = item.categories.map(sub => {

@@ -209,9 +209,15 @@ header h1 {
 .product-description {
   font-size: 14px;
   text-align: justify;
-  margin-top: 5px;
+  margin: 8px 0;
   color: #666;
   font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+}
+
+.product-price-info {
+  font-size: 16px;
+  color: #333;
 }
 
 .navigations {
