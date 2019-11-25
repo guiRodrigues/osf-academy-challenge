@@ -5,6 +5,7 @@ const Product = require('../models/product/product');
 async function list(req, res) {
   const { category, id } = req.params;
 
+  // FRONT-END
   // const formatter = new Intl.NumberFormat('pt-BR', {
   //   style: 'currency',
   //   currency: 'BRL',
@@ -41,7 +42,6 @@ async function list(req, res) {
 
       res.render('products', {
         _,
-        title: 'Clothes & Smiles',
         categories,
         category,
         products: response,

@@ -32,7 +32,6 @@ async function list(req, res) {
 
     res.render('subcategories', {
       _,
-      title: 'Clothes & Smiles',
       categories,
       category,
       subcategoryInfo,

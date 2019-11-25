@@ -8,9 +8,12 @@ async function list(req, res) {
   const categories = await req.categories.then(resp => resp);
 
   Category.findOne({ id: category }).then(item => {
+    if (!item) {
+      res.render('error', { _ });
+    }
+
     res.render('categories', {
       _,
-      title: 'Clothes & Smiles',
       categories,
       category,
       item,
