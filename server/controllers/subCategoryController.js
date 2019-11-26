@@ -1,8 +1,6 @@
-const _ = require('underscore');
-
 const Category = require('../models/category/mainCategory');
 
-async function list(req, res) {
+async function index(req, res, next) {
   const { category, subcategory } = req.params;
 
   const subcategoryInfo = {
@@ -10,10 +8,13 @@ async function list(req, res) {
     info: '',
   };
 
-  // get categories
-  const categories = await req.categories.then(resp => resp);
-
   Category.findOne({ id: category }).then(item => {
+    if (!item) {
+      const err = new Error('Category not found');
+      err.statusCode = 404;
+      return next({ err, payload: { category } });
+    }
+
     const subSubCategories = item.categories.map(sub => {
       if (sub.id === subcategory) {
         subcategoryInfo.name = sub.name;
@@ -30,9 +31,7 @@ async function list(req, res) {
     // transforming to JSON
     const t = filteredResult.map(obj => obj.toJSON());
 
-    res.render('subcategories', {
-      _,
-      categories,
+    return res.render('subcategories', {
       category,
       subcategoryInfo,
       item: t,
@@ -41,5 +40,5 @@ async function list(req, res) {
 }
 
 module.exports = {
-  list,
+  index,
 };

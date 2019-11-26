@@ -1,0 +1,46 @@
+<body>
+<div class="container product-detail box" style="margin:3%;">
+  <br>
+  <div class="columns">
+    <div class="column is-hidden-desktop is-1-tablet is-hidden-mobile"></div>
+
+    <div class="column is-5-desktop is-5-tablet is-12-mobile">
+      <img
+              alt="<%= product.images.large[0].alt %>"
+              src="/images/<%= product.images.large[0].link %>"
+              title="<%= product.images.large[0].title %>"
+              style="max-height: 500px"
+      />
+    </div>
+
+    <div class="column is-7-desktop is-5-tablet is-12-mobile content-detail">
+      <dt style="font-size:1.7em;"><%= product.name %></dt>
+      <dt style="font-size:1em; text-transform:uppercase">Category</dt>
+      <hr>
+      <div class="price">
+        <label for="price">Rp. </label>
+        <span><%= product.price %></span>
+        <br><br>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <h5 class="title is-6">Product Description</h5>
+          <p style="font-size:1.1em;"><%- product.page_description %></p>
+        </div>
+          <div class="column">
+            <h5 class="title is-6">Specs</h5>
+            <div style="font-size:1.1em;"><%- product.long_description %></div>
+          </div>
+      </div>
+
+      <hr>
+      <button class="button is-full is-warning">Add to Cart</button>
+      <button class="button is-full is-primary">Buy Now</button>
+      <div class="column is-hidden-desktop is-1-tablet is-hidden-mobile"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+

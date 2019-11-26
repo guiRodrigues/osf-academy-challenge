@@ -1,33 +1,42 @@
 <body>
-  <div class="subcategory category-description">
-    <h2 class="subcategory-title category-description-title">
-      <%= subcategoryInfo.name %>
-    </h2>
-    <p class="category-description-text">
-      <%= subcategoryInfo.info %>
-    </p>
-  </div>
-
-  <div>
-    <% _.each(item, function(subC) { %>
-    <div class="subcategory-item">
-      <% if (subC.image) { %>
-      <div>
-        <img class="subcategory-item-img" src="/images/<%= subC.image %>" />
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          <%= subcategoryInfo.name %>
+        </h1>
+        <h2 class="subtitle">
+          <%= subcategoryInfo.info %>
+        </h2>
       </div>
-      <% } else { %>
-      <div class="missing-image"><%= subC.name %></div>
+    </div>
+  </section>
+
+  <div class="columns is-multiline">
+    <% item.map(subC => { %>
+    <div class="card column is-half is-offset-one-quarter category">
+      <% if (subC.image) { %>
+      <div class="card-image">
+        <figure class="image">
+          <img src="/images/<%= subC.image %>" alt="Placeholder image" />
+        </figure>
+      </div>
       <% } %>
-      <p class="subcategory-item-description">
-        <% if (subC.image !== undefined) { %>
-        <span class="subcategory-item-title"><%= subC.name %></span>, <% } %>
-        <%= subC.page_description %>
-      </p>
-      <a href="<%- subC.parent_category_id + '/' + subC.id %>">
-        <button class="subcategory-item-button" type="button">
-          View <%= subC.name %>
-        </button>
-      </a>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <% if (subC.image !== undefined) { %>
+            <p class="title is-5"><%= subC.name %></p>
+            <% } else { %>
+            <p class="title is-3"><%= subC.name %></p>
+            <% } %>
+            <p class="subtitle is-6"><%= subC.page_description %></p>
+            <a href="<%= subC.parent_category_id + '/' + subC.id %>">
+              <button class="button is-primary">View & <%= subC.name %></button>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <% }); %>
   </div>

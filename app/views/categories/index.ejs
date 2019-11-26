@@ -1,33 +1,40 @@
 <body>
-  <div class="category-description">
-    <h2 class="category-description-title">
-      <%= item.page_title %>
-    </h2>
-    <p class="category-description-text">
-      <%= item.page_description %>
-    </p>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <%= item.page_title %>
+      </h1>
+      <h2 class="subtitle">
+        <%= item.page_description %>
+      </h2>
+    </div>
   </div>
 
-  <div>
-    <% _.each(item.categories, function(subC) { %>
-    <div class="subcategory-item">
+  <div class="columns is-multiline">
+    <% item.categories.map(subC => { %>
+    <div class="card column is-half is-offset-one-quarter category">
       <% if (subC.image) { %>
-      <div>
-        <img class="subcategory-item-img" src="/images/<%= subC.image %>" />
+      <div class="card-image">
+        <figure class="image">
+          <img src="/images/<%= subC.image %>" alt="Placeholder image" />
+        </figure>
       </div>
-      <% } else { %>
-      <div class="missing-image"><%= subC.name %></div>
       <% } %>
-      <p class="subcategory-item-description">
-        <% if (subC.image !== undefined) { %>
-        <span class="subcategory-item-title"><%= subC.name %></span>, <% } %>
-        <%= subC.page_description %>
-      </p>
-      <a href="<%- item.id + '/' + subC.id %>">
-        <button class="subcategory-item-button" type="button">
-          View <%= subC.name %>
-        </button>
-      </a>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <% if (subC.image !== undefined) { %>
+            <p class="title is-5"><%= subC.name %></p>
+            <% } else { %>
+            <p class="title is-3"><%= subC.name %></p>
+            <% } %>
+            <p class="subtitle is-6"><%= subC.page_description %></p>
+            <a href="<%- item.id + '/' + subC.id %>">
+              <button class="button is-primary">View <%= subC.name %></button>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <% }); %>
   </div>

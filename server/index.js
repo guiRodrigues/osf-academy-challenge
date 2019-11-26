@@ -74,6 +74,15 @@ class Server {
       console.log(`Express server listening on - http://${host}:${port}`);
     });
   }
+
+  errorHandler() {
+    this.server.use((err, req, res, next) => {
+      return res.render('error', {
+        message: err.err.message,
+        category: err.err.category,
+      });
+    });
+  }
 }
 
 module.exports = new Server();

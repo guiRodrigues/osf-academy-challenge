@@ -8,7 +8,7 @@ function init(server) {
 
   server.use('/', menu);
 
-  server.use('/', categoriesRoute);
+  server.use(categoriesRoute);
 }
 
 module.exports = {

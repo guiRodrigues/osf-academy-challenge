@@ -1,30 +1,54 @@
 <body>
-  <div class="products-container">
-    <div class="products">
-      <% _.each(products, function(product) { %>
-      <div class="product">
-        <div class="image-container">
-          <img class="product-image" src="/images/<%= product.image %>" />
+    <% if (products.length === 0) { %>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        This category has no products
+                    </h1>
+                </div>
+            </div>
+        </section><% } else { %>
+    <div class="columns is-mobile is-multiline is-centered products">
+    <% products.map(product => { %>
+      <div class="card product">
+        <div class="card-image">
+          <figure class="image product-image">
+            <img
+              alt="<%= product.image.alt %>"
+              src="/images/<%= product.image.link %>"
+              title="<%= product.image.title %>" />
+          </figure>
         </div>
-        <div class="infos-container">
-          <h3 class="product-name"><%= product.name %></h3>
-          <p class="product-description"><%= product.short_description %></p>
-          <p class="product-price-info">Price: $ <%= product.price %></p>
-          <button class="subcategory-item-button" type="button">
-            More Info
-          </button>
+        <div class="card-content product-info">
+          <div class="media">
+            <div class="media-content product-desc">
+              <p class="title is-6"><%= product.name %></p>
+              <p class="is-size-7"><%= product.short_description %></p>
+              <p class="is-size-7">Price: $ <%= product.price %></p>
+            </div>
+          </div>
+          <button onclick="goToProduct('<%- product.id %>')" class="button is-primary is-fullwidth bottom-button">More Info</button>
         </div>
       </div>
-      <% }); %>
-      <div class="navigations">
-        <% for (let i=1; i<productsIndexes; i++) { %>
-          <a 
-            class="navigation-button <%- actualPage == i ? 'page-selected' : '' %>" 
-            href="?page=<%= i %>">
-              <%= i %>
-          </a>
-        <% } %>
-      </div>
+    <% }); %>
     </div>
-  </div>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+      <ul class="pagination-list">
+      <% for (let i=1; i<productsIndexes; i++) { %>
+          <li><a class="pagination-link <%- actualPage == i ? 'is-current' : '' %>" aria-label="Goto page 1" href="?page=<%= i %>"><%= i %></a></li>
+        <% } %>
+        </ul>
+    </nav>
+<% }%>
+
+<script>
+  function goToProduct(productId) {
+    let url = window.location.href;
+    if (url.indexOf('?') > 0) {
+      url = url.substring(0, url.indexOf('?'));
+    }
+    window.location.replace(`${url}/${productId}`);
+  }
+</script>
 </body>

@@ -1,12 +1,24 @@
-<header>
-  <a href="/"><h1>Clothes & Likes</h1></a>
-  <nav class="menu">
-    <% _.each(categories, function(categoryInfo) { %>
-    <a
-      class="menu-item <%- categoryInfo.categoryId === category ? 'menu-item-selected' : '' %>"
-      href="<%- '/' + categoryInfo.categoryId %>"
-      ><%= categoryInfo.categoryName %></a
-    >
-    <% }); %>
-  </nav>
-</header>
+<section class="hero is-small">
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="/" class="navbar-item">
+            <p>Store</p>
+          </a>
+        </div>
+        <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-end">
+            <% categories.map(categoryInfo => { %>
+            <a
+              class="navbar-item <%- categoryInfo.categoryId === category ? 'is-selected' : '' %>"
+              href="<%- '/' + categoryInfo.categoryId %>"
+              ><%= categoryInfo.categoryName %></a
+            >
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>

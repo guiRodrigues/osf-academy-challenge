@@ -1,20 +1,16 @@
-const _ = require('underscore');
-
 const Category = require('../models/category/mainCategory');
 
-async function list(req, res) {
+async function index(req, res, next) {
   const { category } = req.params;
-
-  const categories = await req.categories.then(resp => resp);
 
   Category.findOne({ id: category }).then(item => {
     if (!item) {
-      res.render('error', { _ });
+      const err = new Error('Category not found');
+      err.statusCode = 404;
+      return next({ err, payload: { category } });
     }
 
-    res.render('categories', {
-      _,
-      categories,
+    return res.render('categories', {
       category,
       item,
     });
@@ -22,5 +18,5 @@ async function list(req, res) {
 }
 
 module.exports = {
-  list,
+  index,
 };
