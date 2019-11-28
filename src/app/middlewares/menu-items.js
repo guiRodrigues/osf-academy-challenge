@@ -11,6 +11,9 @@ module.exports = (req, res, next) => {
       categoryName: category.name,
     }));
 
+    // State of the category (for menu)
+    res.locals.mainCategory = res.locals.categories[0].categoryId;
+
     return next();
   });
 };

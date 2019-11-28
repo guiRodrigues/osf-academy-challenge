@@ -6,18 +6,12 @@ const favicon = require('serve-favicon');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const expressLayoutes = require('express-ejs-layouts');
-const mongoose = require('mongoose');
-const { mongoDB } = require('../config');
+// const database = require('./database');
 // const errorHandler = require('errorhandler');
+const mongoose = require('mongoose');
 
-const config = require('../config');
+const config = require('./config');
 const routes = require('./routes');
-
-/*
- *  TODO search for imports and exports
- *  TODO implement error handler
- *  TODO search for youch for error handling
- * */
 
 class Server {
   constructor() {
@@ -29,7 +23,7 @@ class Server {
     this.server.set('env', process.env.NODE_ENV || 'local');
     this.server.set('port', config.port);
     this.server.set('host', config.host);
-    this.server.set('views', path.resolve(__dirname, '..', 'app', 'views'));
+    this.server.set('views', path.resolve(__dirname, 'views'));
 
     // setup view engine
     this.server.set('view engine', 'ejs');
@@ -54,8 +48,10 @@ class Server {
     // serve static files
     this.server.use(express.static(path.resolve(__dirname, '..', 'public')));
 
+    // database();
+
     mongoose.connect(
-      `mongodb+srv://${mongoDB.username}:${mongoDB.password}@cluster0-fvn5s.mongodb.net/${mongoDB.databaseName}?retryWrites=true&w=majority`,
+      `mongodb+srv://${config.database.username}:${config.database.password}@cluster0-fvn5s.mongodb.net/${config.database.databaseName}?retryWrites=true&w=majority`,
       {
         useNewUrlParser: true,
         useFindAndModify: true,

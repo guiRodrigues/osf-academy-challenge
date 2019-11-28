@@ -28,7 +28,8 @@
               <p class="is-size-7">Price: $ <%= product.price %></p>
             </div>
           </div>
-          <button onclick="goToProduct('<%- product.id %>')" class="button is-primary is-fullwidth bottom-button">More Info</button>
+          <%- console.log(primary_category) %>
+          <a href="/products/<%= primary_category + '/' + product.id %>"><button class="button is-primary is-fullwidth bottom-button">More Info</button></a>
         </div>
       </div>
     <% }); %>
@@ -41,14 +42,4 @@
         </ul>
     </nav>
 <% }%>
-
-<script>
-  function goToProduct(productId) {
-    let url = window.location.href;
-    if (url.indexOf('?') > 0) {
-      url = url.substring(0, url.indexOf('?'));
-    }
-    window.location.replace(`${url}/${productId}`);
-  }
-</script>
 </body>

@@ -1,6 +1,6 @@
 const Category = require('../models/category/mainCategory');
 
-async function index(req, res, next) {
+function index(req, res, next) {
   const { category } = req.params;
 
   Category.findOne({ id: category }).then(item => {

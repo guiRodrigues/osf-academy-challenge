@@ -12,7 +12,7 @@
             <% categories.map(categoryInfo => { %>
             <a
               class="navbar-item <%- categoryInfo.categoryId === category ? 'is-selected' : '' %>"
-              href="<%- '/' + categoryInfo.categoryId %>"
+              href="/categories/<%- categoryInfo.categoryId %>"
               ><%= categoryInfo.categoryName %></a
             >
             <% }); %>
